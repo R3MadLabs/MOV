@@ -4,21 +4,14 @@ import java.io.*;
 
 public class VideoSegmentProcessor {
 
-    public static void main(String[] args) {
-        String inputVideoPath = "path_to_input_video.mp4";
-        String tempDir = "path_to_temp_directory/";
-        int segmentDurationSeconds = 10; // Duration of each segment in seconds
-
+    public void video(String inputVideoPath, String tempDir,String combinedVideoPath ){
+        int segmentDurationSeconds = 100; // Duration of each segment in seconds
         // Step 1: Split the video into segments
         splitVideo(inputVideoPath, tempDir, segmentDurationSeconds);
-
         // Step 2: Process and convert each segment
         processSegments(tempDir);
-
         // Step 3: Combine processed segments
-        String combinedVideoPath = "path_to_combined_video.mp4";
         combineSegments(tempDir, combinedVideoPath);
-
         // Step 4: Clean up temporary files
         cleanUp(tempDir);
     }
