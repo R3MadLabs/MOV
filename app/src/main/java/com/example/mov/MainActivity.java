@@ -134,14 +134,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // Modify the output file name to replace the original extension with ".mp4"
                 String outputFileName = base_name.replaceAll(fileExtension, "mp4");
-                String[] command = {
-                        "-y", // Overwrite output file if it already exists
-                        "-i", videoPath,
-                        "-c:v", "h264", // Change the video codec to h264
+                String[] command = {"-i",
+                        videoPath,
+                        "-c:v",
+                        "libx264",
                         "-c:a", "aac",
-                        "-strict", "experimental",
-                        Environment.getExternalStorageDirectory() + "/" + outputFileName
-                };
+                        Environment.getExternalStorageDirectory() + "/" + outputFileName};
+
                 FFmpegKit.execute(command);
                 // Post the result back to the main thread
                 runOnUiThread(new Runnable() {
@@ -154,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
         });
         thread.start();
     }
-
-
     @SuppressLint("RestrictedApi")
     private void onVideoProcessingCompleted(String videoPath) {
         del_temp_dir(videoPath);
