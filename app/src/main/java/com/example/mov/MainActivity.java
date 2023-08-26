@@ -154,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
         });
         thread.start();
     }
+
+
     @SuppressLint("RestrictedApi")
     private void onVideoProcessingCompleted(String videoPath) {
         del_temp_dir(videoPath);
